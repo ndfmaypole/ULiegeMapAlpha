@@ -7,6 +7,7 @@ import { fixLevels } from './indoor/fixLevels.js';
 import { createIndoorLayers } from './indoor/layers.js';
 import { floorManagement } from './indoor/floorManagement.js';
 import { setupSearch } from './search/autocomplete.js';
+import { fixPath } from './misc/fixPath.js';
 import './styles/index.css';
 
 const map = createMap('map');
@@ -29,7 +30,7 @@ map.on('load', async () => {
   map.addControl(new floorManagement());
 
 
-  const data = await fetch('/data/indoor/latest.geojson');
+  const data = await fetch(fixPath('data/indoor/latest.geojson'));
   const geojson = fixLevels(await data.json());
 
   map.indoor.addMap(IndoorMap.fromGeojson(geojson, { layers: createIndoorLayers() }));

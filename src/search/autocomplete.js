@@ -1,4 +1,7 @@
-const data = '/data/search.json';
+import { fixPath } from "../misc/fixPath";
+
+const dataPath = '/data/search/latest.json';
+const data = fixPath(dataPath)
 const roomZoom = 20;
 const buildingZoom = 18.5;
 
@@ -97,8 +100,8 @@ function extraRoomLevel(tags) {
 
 export async function setupSearch(map) {
   const response = await fetch(data);
-  if (!response.ok) throw new Error(`Could not load search data: HTTP ${response.status}`);
-  const data = await response.json();
+  console.log(response)
+  const json = await response.json();
 
   const buildingInput = document.querySelector('#input-building');
   const buildingResults = document.querySelector('#results-building');
@@ -110,7 +113,7 @@ export async function setupSearch(map) {
   let selectedBuilding = null;
   codeInput.disabled = true;
 
-  const buildings = data.buildings || [];
+  const buildings = json.buildings || [];
   const allRooms = buildings.flatMap((building) => (
     building.content || []
   ).map((room) => ({ room, building })));
