@@ -100,7 +100,6 @@ function extraRoomLevel(tags) {
 
 export async function setupSearch(map) {
   const response = await fetch(data);
-  console.log(response)
   const json = await response.json();
 
   const buildingInput = document.querySelector('#input-building');

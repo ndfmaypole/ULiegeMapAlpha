@@ -6,45 +6,47 @@
   <title>ULiègeMap ALPHA</title>
 </head>
 <body>
-  <div id="banner">
-    <span>ATTENTION ! ULiègeMap est en alpha. Dès lors, beaucoup de fonctionnalités sont indisponibles. <a href="/ULiegeMapAlpha/alpha" class="text-btn">En savoir plus</a></span>
-    <button class="close-btn" onclick="closeBanner()" aria-label="Fermer">×</button>
-  </div>
-
   <div id="main">
-    <div id="search-card">
-      <div class="field-row">
-        <label>Bâtiment :</label>
-        <div class="input">
-          <input type="text" id="input-building" placeholder="" autocomplete="off" />
-          <div id="results-building" class="autocomplete-results"></div>
-        </div>
-      </div>
-      
-      <div class="horizontal-div"></div>
-      
-      <div class="split-row">
-        <div class="field-col">
-          <label>Nom :</label>
-          <div class="input">
-            <input type="text" id="input-name" placeholder="" autocomplete="off" />
-            <div id="results-name" class="autocomplete-results"></div>
-          </div>
-        </div>
-        
-        <div class="vertical-div"></div>
-        
-        <div class="field-col">
-          <label>Code :</label>
-          <div class="input">
-            <input type="text" inputmode="numeric" id="input-code" placeholder="E/SS" autocomplete="off" />
-            <div id="results-code" class="autocomplete-results"></div>
-          </div>
-        </div>
-      </div>
+    <div id="banner">
+      <span>ATTENTION ! ULiègeMap est en alpha. Dès lors, beaucoup de fonctionnalités sont indisponibles. <a href="/ULiegeMapAlpha/alpha" class="text-btn">En savoir plus</a></span>
+      <button class="close-btn" onclick="closeBanner()" aria-label="Fermer">×</button>
     </div>
 
-    <div id="map"></div>
+    <div id="map-box">
+      <div id="search-card">
+        <div class="field-row">
+          <label>Bâtiment :</label>
+          <div class="input">
+            <input type="text" id="input-building" placeholder="" autocomplete="off" />
+            <div id="results-building" class="autocomplete-results"></div>
+          </div>
+        </div>
+        
+        <div class="horizontal-div"></div>
+        
+        <div class="split-row">
+          <div class="field-col">
+            <label>Nom :</label>
+            <div class="input">
+              <input type="text" id="input-name" placeholder="" autocomplete="off" />
+              <div id="results-name" class="autocomplete-results"></div>
+            </div>
+          </div>
+          
+          <div class="vertical-div"></div>
+          
+          <div class="field-col">
+            <label>Code :</label>
+            <div class="input">
+              <input type="text" inputmode="numeric" id="input-code" placeholder="E/SS" autocomplete="off" />
+              <div id="results-code" class="autocomplete-results"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="map"></div>
+    </div>
   </div>
 
   <script type="module" src="/src/main.js"></script>

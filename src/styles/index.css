@@ -6,6 +6,13 @@ html, body {
   font-family: Arial, sans-serif;
 }
 
+#main {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  width: 100vw;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -78,6 +85,7 @@ footer p {
   font-size: 14px;
   position: relative;
   z-index: 99999;
+  flex-shrink: 0;
 }
 
 #banner .close-btn {
@@ -95,20 +103,21 @@ footer p {
   color: #65a8ff
 }
 
-#main {
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 41px); 
-  position: relative;
-}
 
 /* MAP */
+
+#map-box {
+  grid-row: 2;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
 
 #map {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
 /* SEARCH */

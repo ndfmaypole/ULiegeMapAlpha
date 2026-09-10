@@ -14,6 +14,8 @@ const map = createMap('map');
 
 window.map = map;
 
+addIndoorTo(map);
+
 map.addControl(new NavigationControl(), 'top-right');
 
 const geolocateBtn = geolocateControl(map)
@@ -25,10 +27,7 @@ setupSearch(map);
 map.on('load', async () => {
   geolocateBtn.trigger();
 
-  addIndoorTo(map);
-
   map.addControl(new floorManagement());
-
 
   const data = await fetch(fixPath('data/indoor/latest.geojson'));
   const geojson = fixLevels(await data.json());
@@ -41,5 +40,5 @@ window.closeBanner = function() {
   const main = document.getElementById('main');
   
   banner.style.display = 'none';
-  main.style.height = '100vh'; 
+  //main.style.height = '100vh'; 
 };
