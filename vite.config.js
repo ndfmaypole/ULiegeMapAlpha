@@ -23,8 +23,8 @@ export default defineConfig({
         include: ['maplibre-gl']
     },
     build: {
-    rollupOptions: {
-        input: getAllHtml(), 
-    },
+        rollupOptions: {
+            input: getAllHtml(), 
+        },
     },
 });

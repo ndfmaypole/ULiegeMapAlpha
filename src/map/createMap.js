@@ -1,6 +1,7 @@
 import { Map, setWorkerUrl } from 'maplibre-gl';
+import { fixPath } from '../misc/fixPath';
 
-setWorkerUrl(new URL('maplibre-gl/dist/maplibre-gl-worker.mjs', import.meta.url).href);
+setWorkerUrl(fixPath('/assets/maplibre-gl-worker.mjs'));
 
 export function createMap(container) {
   return new Map({
