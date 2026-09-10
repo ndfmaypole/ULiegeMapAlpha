@@ -26,8 +26,5 @@ export default defineConfig({
     rollupOptions: {
         input: getAllHtml(), 
     },
-    commonjsOptions: {
-      include: [/maplibre-gl/, /node_modules/]
-    }
     },
 });
