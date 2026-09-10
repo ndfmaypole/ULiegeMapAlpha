@@ -42,6 +42,7 @@ export function createIndoorLayers() {
       indoor lines repeat_on  ==>  gère repeat_on à part
       indoor=doors way > node
       indoor=doors open  way > node
+      entrance/exit
       indoor= stairs/elevators
       indoor LABELS*/
     {
@@ -133,6 +134,20 @@ export function createIndoorLayers() {
       type: 'circle',
       filter: ['all', ['==', ['geometry-type'], 'Point'], ['==', ['get', 'indoor'], 'door'], ['==', ['get', 'door'], 'no']],
       paint: { 'circle-color': '#a9bce6', 'circle-radius': 4, 'circle-stroke-color': '#5270b1', 'circle-stroke-width': 1.5 },
+      source: 'indoor'
+    },
+    {
+      id: 'entrance-node',
+      type: 'circle',
+      filter: ['all', ['==', ['geometry-type'], 'Point'], ['any', ['==', ['get', 'entrance'], 'main'], ['==', ['get', 'entrance'], 'yes']], ['!=', ['get', 'wheelchair'], 'designated']],
+      paint: { 'circle-color': '#d7ffd6', 'circle-radius': 4, 'circle-stroke-color': '#0ed668', 'circle-stroke-width': 1.5 },
+      source: 'indoor'
+    },
+    {
+      id: 'exit-node',
+      type: 'circle',
+      filter: ['all', ['==', ['geometry-type'], 'Point'], ['==', ['get', 'entrance'], 'exit']],
+      paint: { 'circle-color': '#e6a9a9', 'circle-radius': 4, 'circle-stroke-color': '#d31313', 'circle-stroke-width': 1.5 },
       source: 'indoor'
     },
     /*{

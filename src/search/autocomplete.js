@@ -1,4 +1,5 @@
 import { fixPath } from "../misc/fixPath";
+import { setLevel } from "../indoor/setLevel";
 
 const dataPath = '/data/search/latest.json';
 const data = fixPath(dataPath)
@@ -26,7 +27,7 @@ function nameText(tags) {
     .toLowerCase();
 }
 
-function codeValues(tags) {
+export function codeValues(tags) {
   return ['ref', 'official_ref']
     .flatMap((key) => tagValues(tags, key))
     .map((value) => value.toLowerCase());
@@ -89,15 +90,6 @@ function connectAutocomplete(input, results, findMatches, selectItem) {
   });
 }
 
-// si une feature a plusieurs niveau, zoomer sur son niveau normal (dans le code)
-function extraRoomLevel(tags) {
-  for (const value of codeValues(tags)) {
-    const level = parseInt(value.split('/')[0], 10);
-    if (!Number.isNaN(level)) return level;
-  }
-  return null;
-}
-
 export async function setupSearch(map) {
   const response = await fetch(data);
   const json = await response.json();
@@ -122,17 +114,10 @@ export async function setupSearch(map) {
     map.easeTo({ center: point, zoom, duration: 700 });
   }
 
-  // zoomer sur level correct
-  function setLevel(tags) {
-    let level = Number(tags.level);
-    if (!level)
-        level = extraRoomLevel(tags);
-    map.indoor.setLevel(level);
-  }
 
   function goToRoom(room) {
     zoomTo(room.centre, roomZoom);
-    setLevel(room.tags);
+    setLevel(map, room.tags);
   }
 
   function resetBuildingScopedInputs() {
