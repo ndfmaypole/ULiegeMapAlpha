@@ -19,9 +19,15 @@ function getAllHtml() {
 
 export default defineConfig({
     base: '/ULiegeMapAlpha/',
+    optimizeDeps: {
+        include: ['maplibre-gl']
+    },
     build: {
     rollupOptions: {
         input: getAllHtml(), 
     },
+    commonjsOptions: {
+      include: [/maplibre-gl/, /node_modules/]
+    }
     },
 });
