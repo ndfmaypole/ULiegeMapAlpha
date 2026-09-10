@@ -1,0 +1,10 @@
+[out:json][timeout:60];
+
+nwr["building"]["operator"="Université de Liège"]({{bbox}})->.bats;
+.bats map_to_area -> .bat_areas;
+
+(
+  .bats;
+  nwr(area.bat_areas);
+);
+out geom;
