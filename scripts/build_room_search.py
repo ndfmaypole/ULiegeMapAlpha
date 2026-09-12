@@ -10,7 +10,9 @@ features = []
 buildings = []
 
 for obj in geojson["features"]:
-    properties = obj["properties"]
+    properties = obj.get("properties")
+    if not properties:
+        continue
     geometry = shape(obj["geometry"])
 
     if "building" in properties and geometry.geom_type in ["Polygon", "MultiPolygon"]:
@@ -19,7 +21,7 @@ for obj in geojson["features"]:
         indoorShapes.append((properties, geometry))
 
 for bProps, bGeom in buildingShapes:
-    id = bProps.get("@id") or "0"
+    id = bProps.get("@id")
     position = bGeom.centroid
     centre = [position.x, position.y]
 
